@@ -15,6 +15,29 @@ $(document).ready(function() {
 
       var database = firebase.database();
 
-      
+      //Add Train
+      $("#add-train-btn").on("click", function(event) {
+          event.preventDefault();
+
+          //Takes in user input
+          var trainName = $("#trainName-input").val().trim();
+          var destination = $("#destination-input").val().trim();
+          var trainTime = $("#trainTime-input").val().trim();
+          var frequency = $("#frequency-input").val().trim();
+          
+          //Temporary objects for holding train information
+          var newTrain = {
+              name: trainName,
+              goingTo: destination,
+              startTime: trainTime,
+              frequency: frequency
+            };
+            
+            //Uploads train to database
+            database.ref().push(newTrain);
+            console.log(newTrain);
+        });
+
+
 
 });
