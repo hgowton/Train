@@ -42,7 +42,7 @@ $(document).ready(function() {
             console.log(tRemainder);
 
             //Minutes until train
-            var tMinutesTillTrain = tFrequency - tRemainder;
+            var tMinutesTillTrain = frequency - tRemainder;
             console.log("minutes until train:" + tMinutesTillTrain);
 
             //Next Train
@@ -81,16 +81,17 @@ $(document).ready(function() {
             //Store everything into a variable
             var trainName = childSnapshot.val().name;
             var destination = childSnapshot.val().goingTo;
-            var trainTime = childSnapshot.val().startTime;
+            var nextTrainConverted = childSnapshot.val().nextTrainConverted;
+            var tMinutesTillTrain = childSnapshot.val().tMinutesTillTrain;
             var frequency = childSnapshot.val().frequency;
 
-            //Moment.js configure time to run
+            //appending table
             var newRow = $("<tr>").append(
                 $("<td>").text(trainName),
                 $("<td>").text(destination),
                 $("<td>").text(frequency),
-                $("<td>").text("frequency"),
-                $("<td>").text("frequency"),
+                $("<td>").text(nextTrainConverted),
+                $("<td>").text(tMinutesTillTrain),
             );
 
             $("#train-table > tbody").append(newRow);
